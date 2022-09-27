@@ -30,4 +30,41 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  const body = req.body;
+  res.json({
+    message: 'created',
+    data: body,
+  });
+});
+
+// PUT es el mismo codigo. solo cambia router.put
+router.patch('/:id', (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+  res.json({
+    message: 'updated',
+    data: body,
+    id,
+  });
+});
+
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+  res.json({
+    message: 'updated complete',
+    data: body,
+    id,
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  res.json({
+    message: 'deleted',
+    id,
+  });
+});
+
 module.exports = router;
