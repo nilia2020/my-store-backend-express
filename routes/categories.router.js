@@ -1,16 +1,17 @@
 const express = require('express');
-
+const { faker } = require('@faker-js/faker');
 const router = express.Router();
 
-router.get('/categories/:categoryId/products/:productId', (req, res) => {
-  const { categoryId, productId } = req.params;
-  res.json({
-    categoryId,
-    category: 'category1',
-    productId,
-    name: 'Product1',
-    price: 1000,
-  });
+router.get('/', (req, res) => {
+  const categories = [];
+  const { size } = req.query;
+  const limit = size || 10;
+  for (let index = 0; index < limit; index++) {
+    categories.push({
+      categorie: faker.commerce.productAdjective(),
+    });
+  }
+  res.json(categories);
 });
 
 module.exports = router;

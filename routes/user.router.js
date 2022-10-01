@@ -3,7 +3,7 @@ const { faker } = require('@faker-js/faker');
 
 const router = express.Router();
 
-router.get('/users', (req, res) => {
+router.get('/', (req, res) => {
   const users = [];
   const { size } = req.query;
   const limit = size || 10;
