@@ -1,28 +1,10 @@
 const express = require('express');
-const { faker } = require('@faker-js/faker');
-
+const CategorieService = require('./../services/users.service');
 const router = express.Router();
-
+const service = new CategorieService();
 router.get('/', (req, res) => {
-  const users = [];
-  const { size } = req.query;
-  const limit = size || 10;
-  for (let index = 0; index < limit; index++) {
-    users.push({
-      name: faker.name.firstName(),
-      lastName: faker.name.lastName,
-      image: faker.image.imageUrl(),
-    });
-  }
+  const users = service.find();
   res.json(users);
-  // if (limit && offset) {
-  //   res.json({
-  //     limit,
-  //     offset,
-  //   });
-  // } else {
-  //   res.send('No hay parametros');
-  // }
 });
 
 module.exports = router;

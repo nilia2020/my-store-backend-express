@@ -1,6 +1,6 @@
 const express = require('express');
 
-const ProductService = require('./../services/product.service');
+const ProductService = require('../services/products.service');
 
 const router = express.Router();
 
@@ -23,39 +23,29 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const body = req.body;
-  res.status(201).json({
-    message: 'created',
-    data: body,
-  });
+  const newProduct = service.create(body);
+  res.status(201).json(newProduct);
 });
 
 // PUT es el mismo codigo. solo cambia router.put
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  res.json({
-    message: 'updated',
-    data: body,
-    id,
-  });
+  const product = service.update(id, body);
+  res.json(product);
 });
 
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  res.json({
-    message: 'updated complete',
-    data: body,
-    id,
-  });
+  const product = service.update(id, body);
+  res.json(product);
 });
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
-    message: 'deleted',
-    id,
-  });
+  const answer = service.delete(id);
+  res.json(answer);
 });
 
 module.exports = router;
