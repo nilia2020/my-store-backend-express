@@ -1,5 +1,10 @@
 const express = require('express');
 const routerApi = require('./routes');
+const {
+  logErrors,
+  errorHandler,
+  boomErrorHandler,
+} = require('./middlewares/error.handle');
 
 // const { faker } = require('@faker-js/faker');
 
@@ -17,5 +22,10 @@ app.get('/new-endpoint', (req, res) => {
 });
 
 routerApi(app);
+// Despues del routing middleware de error
+
+app.use(logErrors);
+app.use(boomErrorHandler);
+app.use(errorHandler);
 
 app.listen(port, () => {});
