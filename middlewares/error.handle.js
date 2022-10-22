@@ -4,7 +4,7 @@ function logErrors(err, req, res, next) {
 }
 //Este middleware no tiene next entonces acá se termina
 //la secuencia de middlewares
-function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res) {
   res.status(500).json({
     message: err.message,
     stack: err.stack,
